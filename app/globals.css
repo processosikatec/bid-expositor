@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Identidade visual BID — extraída de conexao.bid */
+@theme {
+  --color-bid-bg-dark: oklch(16.1% 0.075 288.5);   /* #09031F aprox. */
+  --color-bid-bg-deep: oklch(19.2% 0.093 291.4);
+  --color-bid-purple: oklch(39.6% 0.209 290.2);
+  --color-bid-purple-dark: oklch(25.7% 0.144 291.6);
+  --color-bid-violet: oklch(49.4% 0.234 291.1);
+  --color-bid-violet-light: oklch(59.3% 0.211 293.4);
+  --color-bid-lilac: oklch(72.9% 0.153 300.2);
+  --color-bid-cyan: oklch(72.2% 0.108 220.3);
+  --color-bid-yellow: oklch(82.1% 0.161 79.8);
+  --color-bid-surface: oklch(97.8% 0.003 286);
+  --color-bid-surface-soft: oklch(95.8% 0.006 292);
+  --color-bid-text: oklch(22.6% 0.032 288.5);
+  --color-bid-muted: oklch(51.2% 0.026 289.2);
+
+  /* Escala "brand" usada nos componentes */
+  --color-brand-50: oklch(95.8% 0.02 292);
+  --color-brand-100: oklch(92% 0.045 292);
+  --color-brand-200: oklch(85% 0.09 292);
+  --color-brand-300: oklch(76% 0.14 293);
+  --color-brand-400: oklch(66% 0.19 293);
+  --color-brand-500: oklch(59.3% 0.211 293.4);
+  --color-brand-600: oklch(49.4% 0.234 291.1);
+  --color-brand-700: oklch(39.6% 0.209 290.2);
+  --color-brand-800: oklch(32% 0.18 291);
+  --color-brand-900: oklch(25.7% 0.144 291.6);
+  --color-brand-950: oklch(16.1% 0.075 288.5);
+  --color-accent-400: oklch(78% 0.1 220.3);
+  --color-accent-500: oklch(72.2% 0.108 220.3);
+
+  --font-sans: var(--font-dm-sans), "DM Sans", Inter, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), "Space Grotesk", "DM Sans", system-ui, sans-serif;
+
+  --radius-4xl: 2rem;
+}
+
+:root {
+  --gradient-institutional: linear-gradient(125deg, var(--color-bid-bg-dark) 0%, oklch(21.6% 0.111 292) 45%, oklch(33.1% 0.176 291) 100%);
+  --gradient-violet: linear-gradient(120deg, var(--color-bid-purple) 0%, var(--color-bid-violet) 55%, var(--color-bid-violet-light) 100%);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bid-surface text-bid-text antialiased;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility bg-institutional {
+  background-image: var(--gradient-institutional);
+}
+@utility bg-violet-gradient {
+  background-image: var(--gradient-violet);
+}
+@utility tech-glow {
+  background-image:
+    radial-gradient(circle at 18% 26%, color-mix(in oklab, var(--color-bid-violet) 30%, transparent), transparent 38%),
+    radial-gradient(circle at 82% 64%, color-mix(in oklab, var(--color-bid-cyan) 20%, transparent), transparent 36%);
+}
+@utility eyebrow {
+  @apply text-xs font-bold uppercase tracking-[0.14em];
+}
+
+@utility input {
+  @apply w-full rounded-xl border border-bid-text/15 bg-white px-3.5 py-2.5 text-sm outline-none transition placeholder:text-bid-muted/70 focus:border-brand-500 focus:ring-4 focus:ring-brand-500/15;
+}
+@utility label {
+  @apply mb-1.5 block text-xs font-semibold text-bid-muted;
+}
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold uppercase tracking-[0.08em] transition duration-300 disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-violet-gradient text-white shadow-[0_16px_36px_-18px_var(--color-bid-violet)] hover:-translate-y-0.5;
+}
+@utility btn-secondary {
+  @apply btn border border-bid-text/15 bg-white text-bid-purple-dark hover:border-brand-500 hover:text-brand-600;
+}
+@utility btn-ghost-light {
+  @apply btn border border-white/25 bg-white/5 text-white backdrop-blur hover:bg-white/15;
+}
+@utility btn-danger {
+  @apply btn border border-red-200 bg-white text-red-700 hover:bg-red-50;
+}
+@utility card {
+  @apply rounded-3xl border border-bid-text/10 bg-white shadow-[0_20px_50px_-30px_oklch(22.6%_0.032_288.5/0.35)];
+}

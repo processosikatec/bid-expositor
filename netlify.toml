@@ -1,5 +1,11 @@
 [build]
   command = "npm run build"
 
+[build.environment]
+  # Variáveis NEXT_PUBLIC_* vão para o bundle do navegador por definição
+  # (URL do site, URL do Supabase e anon key). Não são segredos; o scanner
+  # continua valendo para SUPABASE_SERVICE_ROLE_KEY.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY"
+
 [[plugins]]
   package = "@netlify/plugin-nextjs"
